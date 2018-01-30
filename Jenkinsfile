@@ -18,7 +18,7 @@ node {
                                 )
 
                 echo "Rollback started" 
-                def datas = readYaml file: 'db/rollback.tag.yaml',text: "''"
+                def datas = readYaml file: 'db/rollback.tag.yaml',text: ""
                 echo datas.rollbackToTag               
                 
         }

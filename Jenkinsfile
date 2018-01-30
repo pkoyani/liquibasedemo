@@ -4,12 +4,10 @@ node {
     currentBuild.result = "SUCCESS"
 	try { 
      stage('Checkout') { //(1)
-            echo "Checkout"
             checkout scm
         }
 
 	stage('Build') { //(2)
-                echo "Build"
 
                 liquibaseUpdate(changeLogFile: 'db/master.xml',
                                   testRollbacks: false,
@@ -17,9 +15,8 @@ node {
                                   liquibasePropertiesPath: 'db/liquibase.properties'
                                 )
 
-                echo "Rollback started" 
 
-                def rollbackInfo = readYaml file: 'db/rollback.tag.yaml',text: ""
+                def rollbackInfo = readYaml file: dbRollbackConfigFile,text: ""
                 if(rollbackInfo.isRollbackEnable)
                 {
                     echo rollbackInfo.rollbackToTag
@@ -33,7 +30,6 @@ node {
         }
 
     stage('Clean-up') { //(2)
-                 echo "Clean-up-Done"
         }
 	} catch (Exception e) {
         currentBuild.result = "FAILURE"

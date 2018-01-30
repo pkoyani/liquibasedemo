@@ -16,7 +16,7 @@ node {
                                 )
 
                 echo "Rollback started"
-                def datas = readYaml file: 'db/rollback.tag.yml'
+                def datas = readYaml file: 'db/rollback.tag.yml' text: "''"
                 echo datas.rollbackToTag
                                 liquibaseRollback(changeLogFile: 'db/master.xml',
                                      testRollbacks: false,

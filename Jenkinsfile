@@ -1,5 +1,5 @@
 node {
-    def String dbRollbackConfigFile = 'db/rollback.tag.yml'
+    def String dbRollbackConfigFile = 'db/rollback.tag.yaml'
 
     currentBuild.result = "SUCCESS"
 	try { 
@@ -18,7 +18,7 @@ node {
                                 )
 
                 echo "Rollback started" 
-                def datas = readYaml file: dbRollbackConfigFile text:"''"
+                def datas = readYaml file: 'db/rollback.tag.yaml' text: "''"
                 echo datas.rollbackToTag               
                 
         }

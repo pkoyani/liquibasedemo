@@ -19,7 +19,7 @@ node {
 
                 echo "Rollback started"
                 def datas = readYaml file: dbRollbackConfigFile
-
+                echo datas
                 echo datas
                                 liquibaseRollback(changeLogFile: 'db/master.xml',
                                      testRollbacks: false,

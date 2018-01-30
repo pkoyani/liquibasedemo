@@ -18,8 +18,8 @@ node {
                                 )
 
                 echo "Rollback started" 
-                def datas = readYaml file: dbRollbackConfigFile
-                echo datas[0].rollbackToTag               
+                def datas = readYaml file: dbRollbackConfigFile text:"''"
+                echo datas.rollbackToTag               
                 
         }
 

@@ -1,4 +1,6 @@
 node {
+    def String dbRollbackConfigFile = 'db/rollback.tag.yml'
+
     currentBuild.result = "SUCCESS"
 	try { 
      stage('Checkout') { //(1)
@@ -16,8 +18,9 @@ node {
                                 )
 
                 echo "Rollback started"
-                def datas = readYaml file: 'db/rollback.tag.yml' text: "''"
-                echo datas.rollbackToTag
+                def datas = readYaml file: dbRollbackConfigFile
+
+                echo datas
                                 liquibaseRollback(changeLogFile: 'db/master.xml',
                                      testRollbacks: false,
                                      databaseEngine: 'Postgres',

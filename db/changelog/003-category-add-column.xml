@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'
+  logicalFilePath="003-category-add-column.xml">
+  
+  <changeSet id="003.1" author="pk">
+		<tagDatabase tag="003"/>
+	</changeSet>  
+	
+	
+  <changeSet id='003' author='pk'>
+    
+    <sql>
+		ALTER TABLE public.category
+		ADD COLUMN LONG_DESCRIPTION2 VARCHAR(500) NULL;
+    </sql>    
+		<rollback>
+					alter table public.category drop column LONG_DESCRIPTION2;
+		</rollback>
+
+  </changeSet>
+</databaseChangeLog>

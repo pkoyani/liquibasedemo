@@ -16,7 +16,9 @@ node {
                                 )
 
                 echo "Rollback started"
-                liquibaseRollback(changeLogFile: 'db/master.xml',
+                def datas = readYaml file: 'db/rollback.tag.yml'
+                echo datas
+                                liquibaseRollback(changeLogFile: 'db/master.xml',
                                      testRollbacks: false,
                                      databaseEngine: 'Postgres',
                                      liquibasePropertiesPath: 'db/liquibase.properties',

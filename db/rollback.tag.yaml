@@ -1,2 +1,2 @@
-isRollbackEnable: true
+isRollbackEnable: false
 rollbackToTag: '002'

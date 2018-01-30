@@ -18,9 +18,18 @@ node {
                                 )
 
                 echo "Rollback started" 
-                def datas = readYaml file: 'db/rollback.tag.yaml',text: ""
-                echo datas.rollbackToTag               
-                
+
+                def rollbackInfo = readYaml file: 'db/rollback.tag.yaml',text: ""
+                if(rollbackInfo.rollbackToTag)
+                {
+                    echo rollbackInfo.rollbackToTag
+                    liquibaseRollback(changeLogFile: 'db/master.xml',
+                                        testRollbacks: false,
+                                        databaseEngine: 'Postgres',
+                                        liquibasePropertiesPath: 'db/liquibase.properties',
+                                        rollbackToTag: rollbackInfo.rollbackToTag)
+                }
+
         }
 
     stage('Clean-up') { //(2)

@@ -20,7 +20,7 @@ node {
                 echo "Rollback started" 
 
                 def rollbackInfo = readYaml file: 'db/rollback.tag.yaml',text: ""
-                if(rollbackInfo.rollbackToTag)
+                if(rollbackInfo.isRollbackEnable)
                 {
                     echo rollbackInfo.rollbackToTag
                     liquibaseRollback(changeLogFile: 'db/master.xml',

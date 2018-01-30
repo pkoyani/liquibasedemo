@@ -11,13 +11,8 @@ node {
 
                  liquibaseUpdate(changeLogFile: 'db/master.xml',
                                   testRollbacks: false,
-                                  url: 'jdbc:postgresql://127.0.0.1:5432/LIQUIBASE_DB',
-                                  driverClassname: 'org.postgresql.Driver',
                                   databaseEngine: 'Postgres',
-                                  liquibasePropertiesPath: 'db/liquibase.properties',
-                                  contexts: 'staging',
-                                  changeLogParameterList: [],
-                                  changeLogParameters: ''
+                                  liquibasePropertiesPath: 'db/liquibase.properties'
                                 )
         }
 

@@ -7,13 +7,22 @@ node {
         }
 
 	stage('Build') { //(2)
-                 echo "Build"
+                echo "Build"
 
-                 liquibaseUpdate(changeLogFile: 'db/master.xml',
+                liquibaseUpdate(changeLogFile: 'db/master.xml',
                                   testRollbacks: false,
                                   databaseEngine: 'Postgres',
                                   liquibasePropertiesPath: 'db/liquibase.properties'
                                 )
+
+                echo "Rollback started"
+                liquibaseRollback(changeLogFile: 'db/master.xml',
+                                     testRollbacks: false,
+                                     databaseEngine: 'Postgres',
+                                     liquibasePropertiesPath: 'db/liquibase.properties',
+                                     rollbackToTag: '002')
+                echo "Rollback success"
+                
         }
 
     stage('Clean-up') { //(2)

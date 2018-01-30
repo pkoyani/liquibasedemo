@@ -1,0 +1,24 @@
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'
+  logicalFilePath="001-initial-schema.xml">
+
+  <changeSet id="001.1" author="PK">
+		<tagDatabase tag="001"/>
+	</changeSet>  
+	
+  <changeSet id='001' author='PK'>
+  
+    <sql>
+     CREATE TABLE public.category
+	(
+		ID integer NOT NULL,
+		CODE character(15) COLLATE pg_catalog."default",
+		DESCRIPTION character(255) COLLATE pg_catalog."default"
+	)
+    </sql>    
+	<rollback>
+           <dropTable tableName="category"/>
+    </rollback>
+  </changeSet>
+</databaseChangeLog>

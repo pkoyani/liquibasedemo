@@ -3,11 +3,11 @@
   xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'
   logicalFilePath="001-initial-schema.xml">
 
-  <changeSet id="001.1" author="PK">
+  <changeSet id="001" author="PK">
 		<tagDatabase tag="001"/>
 	</changeSet>  
 	
-  <changeSet id='001' author='PK'>
+  <changeSet id='001.A' author='PK'>
   
     <sql>
      CREATE TABLE public.category
@@ -21,4 +21,16 @@
            <dropTable tableName="category"/>
     </rollback>
   </changeSet>
+  
+   <changeSet id="001.B" author="pk">
+	<sql>
+    insert into category (ID,CODE,DESCRIPTION) values (1,'C1','category 1');
+    insert into category (ID,CODE,DESCRIPTION) values (2,'C2','category 2');
+    insert into category (ID,CODE,DESCRIPTION) values (3,'C3','category 3');
+    insert into category (ID,CODE,DESCRIPTION) values (4,'C4','category 4');
+    insert into category (ID,CODE,DESCRIPTION) values (5,'C5','category 5');
+	</sql>
+	<rollback/>
+    </changeSet>
+	
 </databaseChangeLog>
